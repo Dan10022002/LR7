@@ -2,7 +2,7 @@
 
 struct Stack_element
 {
-    Stack_element* stack_previous = nullptr;
+    Stack_element* stack_prev = nullptr;
     int value;
 };
 
@@ -24,7 +24,7 @@ void Destructor (Stack_general& Stack)
     {
         Stack_element* stack_time = new Stack_element;
         stack_time = Stack.stack_end;
-        Stack.stack_end = Stack.stack_end -> stack_previous;
+        Stack.stack_end = Stack.stack_end -> stack_prev;
         delete stack_time;
     }
 }
@@ -43,7 +43,7 @@ void Push (Stack_general& Stack, Stack_element& Element)
     {
         Stack_element* stack_time = new Stack_element;
         stack_time -> value = Element.value;
-        stack_time -> stack_previous = Stack.stack_end;
+        stack_time -> stack_prev = Stack.stack_end;
         Stack.stack_end = stack_time;
         delete stack_time;
     }
@@ -55,9 +55,9 @@ Stack_element Pop (Stack_general& Stack)
     Stack_element Stack_pop_element;
     Stack_element* stack_time = new Stack_element;
     stack_time = Stack.stack_end;
-    Stack.stack_end = Stack.stack_end -> stack_previous;
+    Stack.stack_end = Stack.stack_end -> stack_prev;
     Stack_pop_element.value = t;
-    Stack_pop_element.stack_previous = Stack.stack_end;
+    Stack_pop_element.stack_prev = Stack.stack_end;
     delete stack_time;
     return Stack_pop_element;
 }
@@ -69,7 +69,7 @@ size_t Size (const Stack_general& Stack)
     stack_time = Stack.stack_end;
     while (stack_time != nullptr)
     {
-        stack_time = stack_time -> stack_previous;
+        stack_time = stack_time -> stack_prev;
         stack_size += 1;
     }
     delete stack_time;
@@ -82,7 +82,7 @@ void Print (Stack_general& Stack)
     {
         int s = Stack.stack_end -> value;
         std::cout << s << " ";
-        Stack.stack_end = Stack.stack_end -> stack_previous;
+        Stack.stack_end = Stack.stack_end -> stack_prev;
     }
 }
 
