@@ -45,7 +45,7 @@ void Push (Queue_general& Queue, Queue_element& Element)
         queue_time -> value = Element.value;
         Queue.queue_end -> queue_next = queue_time;
         Queue.queue_end = queue_time;
-        delet queue_time;
+        delete queue_time;
     }
 }
 
