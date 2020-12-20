@@ -51,15 +51,9 @@ void Push (Queue_general& Queue, Queue_element& Element)
 
 Queue_element Pop (Queue_general& Queue)
 {
-    int t = Queue.queue_begin -> value;
-    Queue_element Queue_pop_element;
-    Queue_element* queue_time = new Queue_element;
-    queue_time = Queue.queue_begin;
-    Queue.queue_begin = Queue.queue_begin -> queue_next;
-    Queue_pop_element.value = t;
-    Queue_pop_element.queue_next = Queue.queue_begin;
-    delete queue_time;
-    return Queue_pop_element;
+	int t = Queue.queue_begin -> value;
+	Queue.queue_begin = Queue.queue_begin -> queue_next;
+	return t;
 }
 
 size_t Size (const Queue_general& Queue)
