@@ -51,15 +51,9 @@ void Push (Stack_general& Stack, Stack_element& Element)
 
 Stack_element Pop (Stack_general& Stack)
 {
-    int t = Stack.stack_end -> value;
-    Stack_element Stack_pop_element;
-    Stack_element* stack_time = new Stack_element;
-    stack_time = Stack.stack_end;
-    Stack.stack_end = Stack.stack_end -> stack_prev;
-    Stack_pop_element.value = t;
-    Stack_pop_element.stack_prev = Stack.stack_end;
-    delete stack_time;
-    return Stack_pop_element;
+	int t = Stack.stack_end -> value;
+	Stack.stack_end = Stack.stack_end -> stack_prev;
+	return t;
 }
 
 size_t Size (const Stack_general& Stack)
