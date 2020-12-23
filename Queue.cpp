@@ -27,14 +27,14 @@ unsigned int Size(Queue_general& Queue) //3
     }
     else
     {
-        Queue_element* queue_time = new Queue_element;
+        counter += 1;
+        Queue_element* queue_time;
         queue_time = Queue.queue_begin;
         while (queue_time -> queue_next != nullptr)
         {
             queue_time = queue_time -> queue_next;
             counter += 1;
         }
-        delete queue_time;
         return counter;
     }
 }
@@ -43,7 +43,7 @@ void Destructor(Queue_general& Queue) //2
 {
     for (int h = 0; h < Size(Queue); h++)
     {
-        Queue_element* queue_time = new Queue_element;
+        Queue_element* queue_time;
         queue_time = Queue.queue_begin;
         Queue.queue_begin = Queue.queue_begin -> queue_next;
         delete queue_time;
@@ -59,7 +59,6 @@ void Push(Queue_general& Queue, Queue_element& Element) //4
         queue_time->queue_next = nullptr;
         Queue.queue_begin = queue_time;
         Queue.queue_end = Queue.queue_begin;
-        delete queue_time;
     }
     else
     {
@@ -68,7 +67,6 @@ void Push(Queue_general& Queue, Queue_element& Element) //4
         queue_time->queue_next = nullptr;
         Queue.queue_end->queue_next = queue_time;
         Queue.queue_end = queue_time;
-        delete queue_time;
     }
 }
 
@@ -81,14 +79,13 @@ int Pop(Queue_general& Queue) //5
 
 void Print(Queue_general& Queue) //6
 {
-    Queue_element* queue_time = new Queue_element;
+    Queue_element* queue_time;
     queue_time = Queue.queue_begin;
     for (int h = 0; h < Size(Queue); h++)
     {
         std::cout << queue_time -> value << " ";
         queue_time = queue_time -> queue_next;
     }
-    delete queue_time;
 }
 
 int main()
