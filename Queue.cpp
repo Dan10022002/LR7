@@ -108,6 +108,10 @@ int main()
     std::cout << "Your queue: \n";
     Print(Queue);
     std::cout << "\n";
+    std::cout << Pop(Queue);
+    std::cout << "\n";
+    Print(Queue);
+    std::cout << "\n";
     Destructor(Queue);
     return 0;
 }
