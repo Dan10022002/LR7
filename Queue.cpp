@@ -3,7 +3,7 @@
 struct Queue_element
 {
     Queue_element* queue_next = nullptr;
-    int value;
+    int value = -1;
 };
 
 struct Queue_general
@@ -12,15 +12,36 @@ struct Queue_general
     Queue_element* queue_end;
 };
 
-void Constructor (Queue_general& Queue)
+void Constructor(Queue_general& Queue) //1
 {
     Queue.queue_begin = nullptr;
     Queue.queue_end = nullptr;
 }
 
-void Destructor (Queue_general& Queue)
+unsigned int Size(Queue_general& Queue) //3
 {
-    while (Queue.queue_begin != nullptr)
+    size_t counter = 0;
+    if (Queue.queue_begin == nullptr)
+    {
+        return counter;
+    }
+    else
+    {
+        Queue_element* queue_time = new Queue_element;
+        queue_time = Queue.queue_begin;
+        while (queue_time -> queue_next != nullptr)
+        {
+            queue_time = queue_time -> queue_next;
+            counter += 1;
+        }
+        delete queue_time;
+        return counter;
+    }
+}
+
+void Destructor(Queue_general& Queue) //2
+{
+    for (int h = 0; h < Size(Queue); h++)
     {
         Queue_element* queue_time = new Queue_element;
         queue_time = Queue.queue_begin;
@@ -29,77 +50,67 @@ void Destructor (Queue_general& Queue)
     }
 }
 
-void Push (Queue_general& Queue, Queue_element& Element)
+void Push(Queue_general& Queue, Queue_element& Element) //4
 {
     if (Queue.queue_begin == nullptr)
     {
         Queue_element* queue_time = new Queue_element;
-        queue_time -> value = Element.value;
+        queue_time->value = Element.value;
+        queue_time->queue_next = nullptr;
         Queue.queue_begin = queue_time;
-        Queue.queue_end = queue_time;
+        Queue.queue_end = Queue.queue_begin;
         delete queue_time;
     }
     else
     {
         Queue_element* queue_time = new Queue_element;
-        queue_time -> value = Element.value;
-        Queue.queue_end -> queue_next = queue_time;
+        queue_time->value = Element.value;
+        queue_time->queue_next = nullptr;
+        Queue.queue_end->queue_next = queue_time;
         Queue.queue_end = queue_time;
         delete queue_time;
     }
 }
 
-Queue_element Pop (Queue_general& Queue)
+int Pop(Queue_general& Queue) //5
 {
-	int t = Queue.queue_begin -> value;
-	Queue.queue_begin = Queue.queue_begin -> queue_next;
-	return t;
+    int t = Queue.queue_begin->value;
+    Queue.queue_begin = Queue.queue_begin -> queue_next;
+    return t;
 }
 
-size_t Size (const Queue_general& Queue)
+void Print(Queue_general& Queue) //6
 {
-    size_t queue_size = 0;
     Queue_element* queue_time = new Queue_element;
     queue_time = Queue.queue_begin;
-    while (queue_time != nullptr)
+    for (int h = 0; h < Size(Queue); h++)
     {
+        std::cout << queue_time -> value << " ";
         queue_time = queue_time -> queue_next;
-        queue_size += 1;
     }
     delete queue_time;
-    return queue_size;
-}
-
-void Print (Queue_general& Queue)
-{
-    while (Queue.queue_begin != nullptr)
-    {
-        int s = Queue.queue_begin -> value;
-        std::cout << s << " ";
-        Queue.queue_begin = Queue.queue_begin -> queue_next;
-    }
 }
 
 int main()
 {
     Queue_general Queue;
-    Constructor (Queue);
+    Constructor(Queue);
     Queue_element Element;
     int n;
     std::cout << "Enter the number of elements: ";
     std::cin >> n;
-    for (int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
-        std::cout << "Enter the " << (i+1) << " element: ";
+        std::cout << "Enter the " << (i + 1) << " element: ";
         int Element_int;
         std::cin >> Element_int;
         Element.value = Element_int;
-        Push (Queue, Element);
+        Push(Queue, Element);
     }
-    std::cout << "There are " << Size (Queue) << " element in queue.\n";
+    std::cout << "There are " << Size(Queue) << " element in queue.\n";
     std::cout << "Your queue: \n";
-    Print (Queue);
+    Print(Queue);
     std::cout << "\n";
-    Destructor (Queue);
+    Destructor(Queue);
     return 0;
 }
