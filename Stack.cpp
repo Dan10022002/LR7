@@ -8,7 +8,6 @@ struct Stack_element
 
 struct Stack_general
 {
-    Stack_element* stack_begin;
     Stack_element* stack_end;
 };
 
