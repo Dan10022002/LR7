@@ -70,8 +70,11 @@ void Push(Stack_general& Stack, Stack_element& Element) //4
 
 int Pop(Stack_general& Stack) //5
 {
+    Stack_element* stack_time;
+    stack_time = Stack.stack_end;
     int t = Stack.stack_end->value;
     Stack.stack_end = Stack.stack_end->stack_prev;
+    delete stack_time
     return t;
 }
 
