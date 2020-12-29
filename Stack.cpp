@@ -51,16 +51,6 @@ void Destructor(Stack_general& Stack) //2
 
 void Push(Stack_general& Stack, Stack_element& Element) //4
 {
-    if (Stack.stack_end == nullptr)
-    {
-        Stack_element* stack_time = new Stack_element;
-        stack_time->value = Element.value;
-        stack_time->stack_prev = nullptr;
-        Stack.stack_end = stack_time;
-        Stack.stack_begin = Stack.stack_end;
-    }
-    else
-    {
         Stack_element* stack_time = new Stack_element;
         stack_time->value = Element.value;
         stack_time->stack_prev = Stack.stack_end;
