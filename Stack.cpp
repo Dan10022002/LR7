@@ -55,7 +55,6 @@ void Push(Stack_general& Stack, Stack_element& Element) //4
         stack_time->value = Element.value;
         stack_time->stack_prev = Stack.stack_end;
         Stack.stack_end = stack_time;
-    }
 }
 
 int Pop(Stack_general& Stack) //5
