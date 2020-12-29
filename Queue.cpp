@@ -52,22 +52,11 @@ void Destructor(Queue_general& Queue) //2
 
 void Push(Queue_general& Queue, Queue_element& Element) //4
 {
-    if (Queue.queue_begin == nullptr)
-    {
-        Queue_element* queue_time = new Queue_element;
-        queue_time->value = Element.value;
-        queue_time->queue_next = nullptr;
-        Queue.queue_begin = queue_time;
-        Queue.queue_end = Queue.queue_begin;
-    }
-    else
-    {
         Queue_element* queue_time = new Queue_element;
         queue_time->value = Element.value;
         queue_time->queue_next = nullptr;
         Queue.queue_end->queue_next = queue_time;
         Queue.queue_end = queue_time;
-    }
 }
 
 int Pop(Queue_general& Queue) //5
