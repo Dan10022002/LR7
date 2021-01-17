@@ -13,7 +13,6 @@ struct Stack_general
 
 void Constructor(Stack_general& Stack) //1
 {
-    Stack.stack_begin = nullptr;
     Stack.stack_end = nullptr;
 }
 
