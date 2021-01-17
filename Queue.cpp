@@ -55,8 +55,16 @@ void Push(Queue_general& Queue, Queue_element& Element) //4
         Queue_element* queue_time = new Queue_element;
         queue_time->value = Element.value;
         queue_time->queue_next = nullptr;
-        Queue.queue_end->queue_next = queue_time;
-        Queue.queue_end = queue_time;
+         if (Size(Queue) != 0)
+        {
+            Queue.queue_end->queue_next = queue_time;
+            Queue.queue_end = queue_time;
+        }
+        else
+        {
+            Queue.queue_begin = queue_time;
+            Queue.queue_end = Queue.queue_begin;
+        }
 }
 
 int Pop(Queue_general& Queue) //5
